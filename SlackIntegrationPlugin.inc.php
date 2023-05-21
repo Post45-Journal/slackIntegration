@@ -1,16 +1,16 @@
 <?php
 /**
- * @file PluginTemplatePlugin.inc.php
+ * @file SlackIntegrationPlugin.inc.php
  *
  * Copyright (c) 2017-2021 Simon Fraser University
  * Copyright (c) 2017-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class PluginTemplatePlugin
- * @brief Plugin class for the PluginTemplate plugin.
+ * @class SlackIntegrationPlugin
+ * @brief Plugin class for the Slack Integration plugin.
  */
 import('lib.pkp.classes.plugins.GenericPlugin');
-class PluginTemplatePlugin extends GenericPlugin {
+class SlackIntegrationPlugin extends GenericPlugin {
 
 	/**
 	 * @copydoc GenericPlugin::register()
@@ -19,7 +19,7 @@ class PluginTemplatePlugin extends GenericPlugin {
 		$success = parent::register($category, $path);
 		if ($success && $this->getEnabled()) {
 			// Display the publication statement on the article details page
-			HookRegistry::register('Templates::Article::Main', [$this, 'addPublicationStatement']);
+			// HookRegistry::register('Templates::Article::Main', [$this, 'addPublicationStatement']);
 		}
 		return $success;
 	}
@@ -33,7 +33,7 @@ class PluginTemplatePlugin extends GenericPlugin {
 	 * @return string
 	 */
 	public function getDisplayName() {
-		return __('plugins.generic.pluginTemplate.displayName');
+		return __('plugins.generic.slackIntegration.displayName');
 	}
 
 	/**
@@ -45,7 +45,7 @@ class PluginTemplatePlugin extends GenericPlugin {
 	 * @return string
 	 */
 	public function getDescription() {
-		return __('plugins.generic.pluginTemplate.description');
+		return __('plugins.generic.slackIntegration.description');
 	}
 
 	/**
@@ -121,8 +121,8 @@ class PluginTemplatePlugin extends GenericPlugin {
 			case 'settings':
 
 				// Load the custom form
-				$this->import('PluginTemplateSettingsForm');
-				$form = new PluginTemplateSettingsForm($this);
+				$this->import('SlackIntegrationSettingsForm');
+				$form = new SlackIntegrationSettingsForm($this);
 
 				// Fetch the form the first time it loads, before
 				// the user has tried to save it
@@ -152,28 +152,28 @@ class PluginTemplatePlugin extends GenericPlugin {
 	 * ]]
 	 * @return boolean
 	 */
-	function addPublicationStatement($hookName, $params) {
+	// function addPublicationStatement($hookName, $params) {
 
-		// Get the publication statement for this journal or press
-		$context = Application::get()->getRequest()->getContext();
-		$contextId = $context ? $context->getId() : CONTEXT_SITE;
-		$publicationStatement = $this->getSetting($contextId, 'publicationStatement');
+	// 	// Get the publication statement for this journal or press
+	// 	$context = Application::get()->getRequest()->getContext();
+	// 	$contextId = $context ? $context->getId() : CONTEXT_SITE;
+	// 	$publicationStatement = $this->getSetting($contextId, 'publicationStatement');
 
-		// If the journal or press does not have a publication statement,
-		// check if there is one saved for the site.
-		if (!$publicationStatement && $contextId !== CONTEXT_SITE) {
-			$publicationStatement = $this->getSetting(CONTEXT_SITE, 'publicationStatement');
-		}
+	// 	// If the journal or press does not have a publication statement,
+	// 	// check if there is one saved for the site.
+	// 	if (!$publicationStatement && $contextId !== CONTEXT_SITE) {
+	// 		$publicationStatement = $this->getSetting(CONTEXT_SITE, 'publicationStatement');
+	// 	}
 
-		// Do not modify the output if there is no publication statement
-		if (!$publicationStatement) {
-			return false;
-		}
+	// 	// Do not modify the output if there is no publication statement
+	// 	if (!$publicationStatement) {
+	// 		return false;
+	// 	}
 
-		// Add the publication statement to the output
-		$output =& $params[2];
-		$output .= '<p class="publication-statement">' . PKPString::stripUnsafeHtml($publicationStatement) . '</p>';
+	// 	// Add the publication statement to the output
+	// 	$output =& $params[2];
+	// 	$output .= '<p class="publication-statement">' . PKPString::stripUnsafeHtml($publicationStatement) . '</p>';
 
-		return false;
-	}
+	// 	return false;
+	// }
 }

@@ -1,8 +1,8 @@
 <?php
 import('lib.pkp.classes.form.Form');
-class PluginTemplateSettingsForm extends Form {
+class SlackIntegrationSettingsForm extends Form {
 
-	/** @var PluginTemplatePlugin  */
+	/** @var SlackIntegrationPlugin  */
 	public $plugin;
 
 	/**
@@ -28,7 +28,7 @@ class PluginTemplateSettingsForm extends Form {
 	public function initData() {
 		$context = Application::get()->getRequest()->getContext();
 		$contextId = $context ? $context->getId() : CONTEXT_SITE;
-		$this->setData('publicationStatement', $this->plugin->getSetting($contextId, 'publicationStatement'));
+		$this->setData('slackWebhookURL', $this->plugin->getSetting($contextId, 'slackWebhookURL'));
 		parent::initData();
 	}
 
@@ -36,7 +36,7 @@ class PluginTemplateSettingsForm extends Form {
 	 * Load data that was submitted with the form
 	 */
 	public function readInputData() {
-		$this->readUserVars(['publicationStatement']);
+		$this->readUserVars(['slackWebhookURL']);
 		parent::readInputData();
 	}
 
@@ -64,10 +64,10 @@ class PluginTemplateSettingsForm extends Form {
 	 *
 	 * @return null|mixed
 	 */
-	public function execute() {
+	public function execute(...$functionArgs) {
 		$context = Application::get()->getRequest()->getContext();
 		$contextId = $context ? $context->getId() : CONTEXT_SITE;
-		$this->plugin->updateSetting($contextId, 'publicationStatement', $this->getData('publicationStatement'));
+		$this->plugin->updateSetting($contextId, 'slackWebhookURL', $this->getData('slackWebhookURL'));
 
 		// Tell the user that the save was successful.
 		import('classes.notification.NotificationManager');

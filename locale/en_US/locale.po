@@ -11,14 +11,17 @@ msgstr ""
 "PO-Revision-Date: 2020-11-27T16:21:26+00:00\n"
 "Language: \n"
 
-msgid "plugins.generic.pluginTemplate.displayName"
-msgstr "Plugin Template"
+msgid "plugins.generic.slackIntegration.displayName"
+msgstr "Slack Integration"
 
-msgid "plugins.generic.pluginTemplate.description"
-msgstr "A starter template for building your own plugins."
+msgid "plugins.generic.slackIntegration.description"
+msgstr "A plugin to add notifications to Slack."
 
-msgid "plugins.generic.pluginTemplate.publicationStatement"
-msgstr "Publication Statement"
+msgid "plugins.generic.slackIntegration.slackWebhookURL"
+msgstr "Slack Webhook URL"
 
-msgid "plugins.generic.pluginTemplate.publicationStatement.description"
-msgstr "Add a publication statement that you would like to appear on every publication's landing page."
+msgid "plugins.generic.slackIntegration.slackWebhookURL.description"
+msgstr "A Slack Webhook URL that allows posts to a Slack channel."
+
+msgid "plugins.generic.slackIntegration.manager.settings.description"
+msgstr "<p>Please see <a href=\"https://api.slack.com/apps/A050R6FHJ7J/incoming-webhooks\">Slack's documentation</a> for instructions on setting up a webhook to post to Slack chennels. Future versions of this plugin will allow posting to multiple Slack channels & notifiation customization.</p>
